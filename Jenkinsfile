@@ -27,7 +27,6 @@ pipeline{
          sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW> --password-stdin'
         }
       }
-    }
     stage('docker push'){
       agent {label 'agent1'}
       steps{
