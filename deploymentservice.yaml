@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: spring-boot-k8s-container
-        image: aithal2024/artisantek:springboot
+        image: lokeshjwork/devops-integration:springboot
         ports:
         - containerPort: 8080
 ---
