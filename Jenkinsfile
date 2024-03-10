@@ -1,6 +1,7 @@
 pipeline{
   agent none
   environment{
+    DOCKERHUB_CREDENTIALS= credentials('docker-creds')
     DOCKER_USER="aithal2024"
     DOCKER_REPO="artisantek"
     IMAGE_TAG="springboot"
@@ -23,8 +24,7 @@ pipeline{
     stage('Docker login'){
       agent {label 'agent1'}
       steps{
-        withCredentials([usernamePassword(credentialsId: 'docker-creds', passwordVariable: 'docker_pwd', usernameVariable: 'docker_user')]) {
-          sh "docker login -u ${docker_user} -p ${docker_pwd}
+         sh 'docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW> --password-stdin'
         }
       }
     }
