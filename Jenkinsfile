@@ -2,9 +2,9 @@ pipeline{
   agent none
   environment{
     DOCKERHUB_CREDENTIALS= credentials('docker-creds')
-    DOCKER_USER="aithal2024"
-    DOCKER_REPO="artisantek"
-    IMAGE_TAG="springboot"
+    DOCKER_USER='aithal2024'
+    DOCKER_REPO='artisantek'
+    IMAGE_TAG='springboot'
   }
   stages{
     stage('Git checkout'){
@@ -17,7 +17,7 @@ pipeline{
       agent {label 'agent1'}
       steps{
         script{
-          sh 'docker build -t ${DOCKER_USER}/${DOCKER_REPO}:{IMAGE_TAG} .'
+          sh 'docker build -t ${DOCKER_USER}/${DOCKER_REPO}:${IMAGE_TAG} .'
         }
       }
     }
@@ -30,7 +30,7 @@ pipeline{
     stage('docker push'){
       agent {label 'agent1'}
       steps{
-        sh 'docker push ${DOCKER_USER}/${DOCKER_REPO}:{IMAGE_TAG}'
+        sh 'docker push ${DOCKER_USER}/${DOCKER_REPO}:${IMAGE_TAG}'
       }
     }
     stage('deploy to Kubernetes'){
